@@ -1,0 +1,49 @@
+h1 {
+    text-shadow:
+    1px 1px 2px blue,
+    0 0 1em blue,
+    0 0 0.2em blue;
+    color: #ffffff;
+    font-style:italic
+}
+
+h2 {
+    font-style:italic;
+}
+h2.tema {
+    color:red;
+    background:linear-gradient(.75turn, white, #00FF80);
+}
+h2.project {
+    color:#dce92b;
+    background:linear-gradient(.75turn, white, #3343da);
+}
+h2.number {
+    color:#FF8000;
+    background:linear-gradient(.75turn, white, #00FF80);
+}
+h2.learn{
+    color:#12a512;
+    background:linear-gradient(.75turn, white, #e35265);
+}
+ul.learn_list {
+    list-style-type: none;
+
+    /*border: solid blue;*/
+}
+li {
+    border-width:1px;
+    border: solid #000000;
+    border-bottom-style:none;
+    background-color: rgb(236, 220, 198);
+}
+li.bottom {
+    border-bottom-style:solid;
+}
+
+a:visited {
+    color:#247b8a;
+}
+a:hover {
+    text-decoration: double;
+}

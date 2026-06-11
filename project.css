@@ -1,0 +1,21 @@
+strong.underline {
+    color:blue;
+    text-decoration: underline;
+    font-style: italic;
+}
+
+strong.result {
+    color:red;
+}
+
+h2 {
+    background:linear-gradient(.25turn, aqua, white);
+}
+h3 {
+    background-color:#dfdfdf;
+}
+
+ul {
+    border:solid blue;
+    background-color:#dfdfdf;
+}
