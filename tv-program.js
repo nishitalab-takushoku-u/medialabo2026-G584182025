@@ -14,6 +14,14 @@ function print(data) {
     console.log(m.act);
   }
 }
+let b = document.querySelector('button#search');
+function val(){
+  let cha = document.querySelector('#channel');
+  let gen = document.querySelector('#genre');
+  console.log('チャンネル: ' + cha.value);
+  console.log('ジャンル: ' + gen.value);
+}
+b.addEventListener('click', val);
 
 // 課題5-1 の関数 printDom() はここに記述すること
 function printDom(data) {

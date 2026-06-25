@@ -11,9 +11,9 @@ strong.result {
 h2 {
     background:linear-gradient(.25turn, aqua, white);
 }
-h3 {
+/*h3 {
     background-color:#dfdfdf;
-}
+}*/
 
 ul {
     border:solid blue;

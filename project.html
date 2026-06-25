@@ -11,7 +11,30 @@
     <h1><strong class="underline">NHKの番組 </strong> の検索結果</h1>
     <img src="NHK_logo.svg.png" title="NHKlogo" width="100">
     <br>
-    <h3><i><strong>NHK</strong> の番組表（検索結果は2件）</i></h3>
+    <p>
+      <select name="channel" id="channel">
+        <option value="">チャンネル
+      </option>
+        <option value="g1"> NHK総合1</option>
+        <option value="e1"> Eテレ1</option>
+      </select>
+      <select name="genre" id="genre">
+        <option value="">ジャンル</option>
+        <option value="000">ニュース・報道</option>
+        <option value="0100" >スポーツ</option>
+        <option value="0205">情報・ワイドショー</option>
+        <option value="0300" >ドラマ</option>
+        <option value="0409">音楽</option>
+        <option value="0502" >バラエティ</option>
+        <option value="0600">映画</option>
+        <option value="0700" >アニメ</option>
+        <option value="0800">ドキュメンタリー・教養</option>
+        <option value="0903" >劇場・公演</option>
+        <option value="1000">趣味・教育</option>
+        <option value="1100" >福祉</option>
+      </select>
+    </p>
+    <button id="search">検索</button>
     <h2>検索結果1件目</h2>
     <ul>
         <li>開始時刻: <b>2022年3月4日04:35:00</b></li>
