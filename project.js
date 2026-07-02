@@ -25,7 +25,59 @@ b.addEventListener('click', val);
 
 // 課題5-1 の関数 printDom() はここに記述すること
 function printDom(data) {
-
+  let bo = document.querySelector('body'); 
+  let di = document.createElement('div');
+  bo.insertAdjacentElement('afterend', di); 
+  di.setAttribute('id', 'result');
+  let n = data.list.g1;
+ /* let h1st = document.createElement('h1');
+  h1st.setAttribute('id', 'strong');
+  let h1add = document.createElement('h1');
+  h1st = 'NHKの番組';
+  h1add = 'の検索結果';
+  let h1 = document.createElement('h1');
+  h1.textContent = h1st + h1add;
+  di.insertAdjacentElement('beforeend', h1);
+  let img = document.createElement('img');
+  img.setAttribute('src', 'NHK_logo.svg.png');
+  img.setAttribute('title', 'NHKlogo');
+  img.setAttribute('width', '100');
+  di.insertAdjacentElement('beforeend', img);
+  let sel = document.createElement('p#select');
+  sel.setAttribute('name', channnel);
+  sel.setAttribute('id', channel);
+  let op = document.createElement('option');*/
+  let u = document.createElement('ul');
+  di.insertAdjacentElement('afterend', u);
+  for(let i = 0; i < n.length; i++) {
+    let m = n[i];
+    let h2 = document.createElement('h2');
+    h2.textContent = '検索結果' + (i + 1) + '件目';
+    u.insertAdjacentElement('beforeend', h2);
+    let h4 = document.createElement('h4');
+    u.insertAdjacentElement('beforeend', h4);
+    let l = document.createElement('li');
+    l.textContent='開始時刻: ' + m.start_time;
+    h4.insertAdjacentElement('beforeend', l);
+    l = document.createElement('li');
+    l.textContent='終了時刻: ' + m.end_time;
+    h4.insertAdjacentElement('beforeend', l);
+    l = document.createElement('li');
+    l.textContent='チャンネル: ' + m.service.name;
+    h4.insertAdjacentElement('beforeend', l);
+    l = document.createElement('li');
+    l.textContent='タイトル: ' + m.title;
+    h4.insertAdjacentElement('beforeend', l);
+    l = document.createElement('li');
+    l.textContent='サブタイトル: ' +  m.subtitle;
+    h4.insertAdjacentElement('beforeend', l);
+    l = document.createElement('li');
+    l.textContent='番組説明: ' + m.content;
+    h4.insertAdjacentElement('beforeend', l);
+    l = document.createElement('li');
+    l.textContent='出演者: ' + m.act;
+    h4.insertAdjacentElement('beforeend', l);
+  }
 }
 
 // 課題6-1 のイベントハンドラ登録処理は以下に記述
@@ -48,7 +100,7 @@ function showError(err) {
     console.log(err);
 }
 
-// 課題6-1: 通信の最後にいつも実行する処理
+// 課題6-1: textContent 通信の最後にいつも実行する処理
 function finish() {
     console.log('Ajax 通信が終わりました');
 }

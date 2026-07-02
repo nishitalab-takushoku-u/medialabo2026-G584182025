@@ -15,4 +15,20 @@ let gakka = [
 ];
 
 //////////////// ここから下にプログラムを書きたそう!
+function show() {
+	let h = document.querySelector('h2#addr');
+	let p = document.createElement('p');
+	h.insertAdjacentElement('afterend', p); 
+	p.textContent=campus.address; 
+	h = document.querySelector('h2#dept');
+	let u = document.createElement('ul');
+	h.insertAdjacentElement('afterend', u);
+	for (let m of gakka) {
+  		let l = document.createElement('li');
+    	l.textContent=m.name;
+    	u.insertAdjacentElement('beforeend', l);
+	}
+}
 
+let b = document.querySelector('button#show');
+b.addEventListener('click', show);
