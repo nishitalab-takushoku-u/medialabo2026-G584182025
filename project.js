@@ -20,79 +20,105 @@ function val(){
   let gen = document.querySelector('#genre');
   console.log('チャンネル: ' + cha.value);
   console.log('ジャンル: ' + gen.value);
+  sendRequest();
 }
 b.addEventListener('click', val);
-
 // 課題5-1 の関数 printDom() はここに記述すること
 function printDom(data) {
-  let bo = document.querySelector('body'); 
+  // リセット
+  let old = document.querySelector('#result');
+  if (old !== null) {
+    old.remove();
+  }
+
+  let cha = document.querySelector('#channel');
+  let chan = cha.value;
+  let n = null;
+  if (data !== null && data !== undefined && data.list !== null && data.list !== undefined) {
+    n = data.list[chan];
+  }
+
+  let bo = document.querySelector('body');
   let di = document.createElement('div');
-  bo.insertAdjacentElement('afterend', di); 
   di.setAttribute('id', 'result');
-  let n = data.list.g1;
- /* let h1st = document.createElement('h1');
-  h1st.setAttribute('id', 'strong');
-  let h1add = document.createElement('h1');
-  h1st = 'NHKの番組';
-  h1add = 'の検索結果';
-  let h1 = document.createElement('h1');
-  h1.textContent = h1st + h1add;
-  di.insertAdjacentElement('beforeend', h1);
-  let img = document.createElement('img');
-  img.setAttribute('src', 'NHK_logo.svg.png');
-  img.setAttribute('title', 'NHKlogo');
-  img.setAttribute('width', '100');
-  di.insertAdjacentElement('beforeend', img);
-  let sel = document.createElement('p#select');
-  sel.setAttribute('name', channnel);
-  sel.setAttribute('id', channel);
-  let op = document.createElement('option');*/
+  bo.insertAdjacentElement('beforeend', di);
+
+  if (n === null || n === undefined || n.length === 0) {
+    let h2 = document.createElement('h2');
+    h2.textContent = '検索結果0件';
+    di.insertAdjacentElement('beforeend', h2);
+    return;
+  }
+
   let u = document.createElement('ul');
-  di.insertAdjacentElement('afterend', u);
-  for(let i = 0; i < n.length; i++) {
+  di.insertAdjacentElement('beforeend', u);
+
+  for (let i = 0; i < n.length; i++) {
     let m = n[i];
     let h2 = document.createElement('h2');
     h2.textContent = '検索結果' + (i + 1) + '件目';
     u.insertAdjacentElement('beforeend', h2);
-    let h4 = document.createElement('h4');
-    u.insertAdjacentElement('beforeend', h4);
+
     let l = document.createElement('li');
-    l.textContent='開始時刻: ' + m.start_time;
-    h4.insertAdjacentElement('beforeend', l);
+    l.textContent = '開始時刻: ' + m.start_time;
+    u.insertAdjacentElement('beforeend', l);
+
     l = document.createElement('li');
-    l.textContent='終了時刻: ' + m.end_time;
-    h4.insertAdjacentElement('beforeend', l);
+    l.textContent = '終了時刻: ' + m.end_time;
+    u.insertAdjacentElement('beforeend', l);
+
     l = document.createElement('li');
-    l.textContent='チャンネル: ' + m.service.name;
-    h4.insertAdjacentElement('beforeend', l);
+    l.textContent = 'チャンネル: ' + m.service.name;
+    u.insertAdjacentElement('beforeend', l);
+
     l = document.createElement('li');
-    l.textContent='タイトル: ' + m.title;
-    h4.insertAdjacentElement('beforeend', l);
+    l.textContent = 'タイトル: ' + m.title;
+    u.insertAdjacentElement('beforeend', l);
+
     l = document.createElement('li');
-    l.textContent='サブタイトル: ' +  m.subtitle;
-    h4.insertAdjacentElement('beforeend', l);
+    l.textContent = 'サブタイトル: ' + m.subtitle;
+    u.insertAdjacentElement('beforeend', l);
+
     l = document.createElement('li');
-    l.textContent='番組説明: ' + m.content;
-    h4.insertAdjacentElement('beforeend', l);
+    l.textContent = '番組説明: ' + m.content;
+    u.insertAdjacentElement('beforeend', l);
+
     l = document.createElement('li');
-    l.textContent='出演者: ' + m.act;
-    h4.insertAdjacentElement('beforeend', l);
+    l.textContent = '出演者: ' + m.act;
+    u.insertAdjacentElement('beforeend', l);
   }
 }
 
 // 課題6-1 のイベントハンドラ登録処理は以下に記述
-
-
-
+b = document.querySelector('button#search');
+b.addEventListener('click', sendRequest);
 
 // 課題6-1 のイベントハンドラ sendRequest() の定義
 function sendRequest() {
-
+    let cha = document.querySelector('#channel');
+    let gen = document.querySelector('#genre');
+    let chan = cha.value;
+    let genr = gen.value;
+    console.log('チャンネル: ' + chan);
+    console.log('ジャンル: ' + genr);
+    let url = 'https://www.nishita-lab.org/web-contents/jsons/nhk/' + chan + '-' + genr + '-j.json';
+    // 通信開始
+    axios.get(url)
+        .then(showResult)   // 通信成功
+        .catch(showError)   // 通信失敗
+        .then(finish);      // 通信の最後の処理
 }
 
 // 課題6-1: 通信が成功した時の処理は以下に記述
 function showResult(resp) {
 
+	// サーバから送られてきたデータを出力
+	  let data = resp.data;
+
+    if (typeof data === 'string') {
+        data = JSON.parse(data);
+    }
+    printDom(data);
 }
 
 // 課題6-1: 通信エラーが発生した時の処理
@@ -109,7 +135,7 @@ function finish() {
 // 以下はテレビ番組表のデータサンプル
 // 注意: 第5回までは以下を変更しないこと！
 // 注意2: 課題6-1 で以下をすべて削除すること
-let data = {
+/*let data = {
   "list": {
     "g1": [
       {
@@ -188,5 +214,4 @@ let data = {
       }
     ]
   }
-};
-
+};*/
