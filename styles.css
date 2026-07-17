@@ -26,6 +26,10 @@ h2.learn{
     color:#12a512;
     background:linear-gradient(.75turn, white, #e35265);
 }
+h2.efort{
+    color:darkturquoise;
+    background:linear-gradient(.75turn, white, #e35265);
+}
 ul.learn_list {
     list-style-type: none;
 
