@@ -51,3 +51,10 @@ a:visited {
 a:hover {
     text-decoration: double;
 }
+p.concl {
+    border-width:1px;
+    padding: 20;
+    border: solid #0eec0e;
+    border-bottom-style:none;
+    background-color: rgb(236, 220, 198);
+}
